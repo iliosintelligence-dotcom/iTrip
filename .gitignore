@@ -1,0 +1,460 @@
+# =============================================================================
+# iTrip / TaxiFever - Comprehensive .gitignore
+# Go Microservices + Protobuf + Terraform + Docker + Kubernetes
+# =============================================================================
+
+# =============================================================================
+# GO
+# =============================================================================
+# Compiled binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.prof
+*.out
+coverage.out
+coverage.html
+
+# Build artifacts
+bin/
+dist/
+build/
+out/
+*.a
+
+# Dependencies (NEVER commit)
+vendor/
+**/vendor/
+
+# Go module cache
+go.sum
+# go.mod IS committed (required)
+
+# Test files (generated)
+*_test.go
+*_test.go~
+
+# Profiling
+*.pprof
+*.prof
+
+# =============================================================================
+# NODE.JS / FRONTEND (if any)
+# =============================================================================
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+.next/
+.out/
+*.tsbuildinfo
+
+# Package locks (COMMIT these for reproducible builds)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# =============================================================================
+# PROTOBUF / GRPC GENERATED CODE
+# =============================================================================
+# NEVER commit generated code - regenerate with: make proto / buf generate
+**/*.pb.go
+**/*.pb.gw.go
+**/*.pb.micro.go
+**/*.pb.ts
+**/*.pb.js
+**/*.pb.d.ts
+**/*.grpc.pb.go
+**/*.pem.go
+
+# Protobuf well-known types (generated)
+google/protobuf/*.pb.go
+
+# =============================================================================
+# DOCKER
+# =============================================================================
+.docker/
+docker-compose.override.yml
+docker-compose.*.local.yml
+.dockerignore
+
+# Built images (never commit)
+*.tar
+*.tar.gz
+*.tar.xz
+
+# =============================================================================
+# KUBERNETES / HELM / KUSTOMIZE
+# =============================================================================
+# Generated manifests (use helm template / kustomize build in CI)
+**/manifests/
+**/rendered/
+*.generated.yaml
+
+# Helm
+charts/**.tgz
+*.lock
+# Chart.lock IS committed (helm dependency update)
+
+# Kustomize
+kustomization.yaml
+# kustomization.yaml IS committed
+
+# =============================================================================
+# TERRAFORM
+# =============================================================================
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.tfplan
+*.tfplan.out
+.terraform.lock.hcr
+
+# Provider cache
+.terraform/providers/
+*.provider
+
+# State files (NEVER commit)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.tfstate.lock.info
+
+# =============================================================================
+# KUBERNETES / ARGOCD
+# =============================================================================
+# Generated manifests (use kubectl kustomize / helm template)
+*.generated.yaml
+**/overlays/**/rendered/
+
+# SealedSecrets (encrypted - OK to commit sealed, NOT the key)
+# sealed-secrets-key.pem  <- NEVER commit
+
+# =============================================================================
+# VAULT / SECRETS / CERTS
+# =============================================================================
+# NEVER commit secrets!
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.truststore
+
+# Secret files
+*.env
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+.env.development
+*.secret
+*.secret.yaml
+*.secret.yml
+
+# Vault
+*.unseal
+*.token
+*.unseal_token
+
+# SSH
+*.pem
+id_rsa*
+id_ed25519*
+id_ecdsa*
+*.ppk
+
+# =============================================================================
+# LOGS & TEMP FILES
+# =============================================================================
+*.log
+*.log.*
+*.log.*
+*.log.*
+*.tmp
+*.tmp.*
+*.temp
+*.temp.*
+*.swp
+*.swo
+*~
+*~
+.cache/
+.cache/
+tmp/
+temp/
+.tmp/
+*.bak
+*.backup
+*.orig
+
+# =============================================================================
+# IDE / EDITORS
+# =============================================================================
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# VS Code (keep settings)
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+
+# =============================================================================
+# OS
+# =============================================================================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+*.app.dSYM
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# =============================================================================
+# GIT / VERSION CONTROL
+# =============================================================================
+.git/
+.gitignore
+.gitattributes
+.gitmodules
+.gitkeep
+
+# =============================================================================
+# CI/CD
+# =============================================================================
+# GitHub Actions (keep workflows)
+# .github/workflows/ - KEEP
+
+# GitLab CI
+.gitlab-ci.yml - KEEP
+
+# Jenkins
+Jenkinsfile - KEEP
+
+# CircleCI
+.circleci/ - KEEP
+
+# =============================================================================
+# LARGE FILES / BINARIES (use Git LFS instead)
+# =============================================================================
+*.iso
+*.img
+*.dmg
+*.vhd
+*.vmdk
+*.ova
+*.ovf
+*.box
+*.vdi
+*.vmdk
+*.vhdx
+*.qcow2
+
+*.tar
+*.tar.gz
+*.tgz
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.tbz2
+*.zip
+*.zipx
+*.rar
+*.7z
+*.gz
+*.bz2
+*.xz
+*.lzma
+*.lz
+*.zst
+
+*.exe
+*.msi
+*.dmg
+*.pkg
+*.deb
+*.rpm
+*.apk
+*.ipa
+
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+
+# Media
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mp3
+*.wav
+*.flac
+*.ogg
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.tif
+*.svg
+*.ico
+*.webp
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.db3
+*.sqlitedb
+*.realm
+
+# ML Models
+*.onnx
+*.pb
+*.pbtxt
+*.h5
+*.hdf5
+*.model
+*.weights
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# =============================================================================
+# GO SPECIFIC - GENERATED FILES
+# =============================================================================
+# Stringer
+*_string.go
+
+# Mockery
+*_mock.go
+mocks/
+
+# Wire
+wire_gen.go
+
+# GraphQL
+*_generated.go
+
+# =============================================================================
+# SPECIFIC TO TAXIFEVER/ITRIP
+# =============================================================================
+# Generated protobuf paths
+**/proto/go/**/*.pb.go
+**/proto/go/**/*.pb.gw.go
+**/proto/go/**/*.pb.micro.go
+**/proto/go/**/*.pb.ts
+**/proto/go/**/*.pb.js
+
+# Service-specific generated
+services/*/internal/handler/*.pb.go
+services/*/internal/handler/*.pb.gw.go
+
+# Kubernetes generated
+**/kubernetes/generated/
+**/k8s/generated/
+
+# =============================================================================
+# ALLOWLIST - KEEP THESE (remove from ignore if present)
+# =============================================================================
+!/.github/workflows/
+!/.github/dependabot.yml
+!/.github/dependabot.yaml
+!/.github/CODEOWNERS
+!/.github/PULL_REQUEST_TEMPLATE.md
+!/.github/ISSUE_TEMPLATE/
+!/.github/SECURITY.md
+!/.github/FUNDING.yml
+
+!/Makefile
+!/go.mod
+!/go.sum
+!/buf.yaml
+!/buf.gen.yaml
+!/buf.lock
+!/Makefile
+!/Dockerfile
+!/docker-compose.yml
+!/docker-compose.*.yml
+!/docker-compose.yaml
+!/Dockerfile.*
+!/.dockerignore
+!/.gitignore
+!/.gitattributes
+!/.editorconfig
+!/README.md
+!/LICENSE
+!/CHANGELOG.md
+!/CONTRIBUTING.md
+!/CODE_OF_CONDUCT.md
+!/SECURITY.md
+!/go.mod
+!/go.sum
+!/buf.yaml
+!/buf.gen.yaml
+!/buf.lock
+!/go.work
+!/go.work.sum
+!/Makefile
+!/go.work
+!/go.work.sum
+!/Makefile
+!/go.work
+!/go.work.sum
+!/Makefile
